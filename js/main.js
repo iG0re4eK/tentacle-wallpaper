@@ -7,7 +7,7 @@ const context = canvas.getContext("2d");
 let animationId = null;
 let tentacles = [];
 
-const TENTACLE_COUNT = 7;
+const TENTACLE_COUNT = 5;
 
 function createTentacles(count) {
   const tentaclesArray = [];
@@ -23,7 +23,7 @@ function createTentacles(count) {
     const startColor = getRandomColor();
     const targetColor = getRandomColor();
     const colorChangeDuration = randomRange(3000, 8000);
-    const overlap = randomRange(0.85, 0.95);
+    const overlap = randomRange(1.05, 1.1);
 
     const tentacle = new Tentacle(
       canvas.width / 2,

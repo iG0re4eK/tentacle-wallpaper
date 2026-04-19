@@ -24,9 +24,28 @@ export class VectorDraw {
     this.context.lineTo(endPoint.x, endPoint.y);
     this.context.strokeStyle = this.color;
     this.context.lineWidth = this.width;
+    this.context.lineCap = "round";
     this.context.stroke();
 
+    const circleRadius = this.width / 2;
+    this.drawCircle(this.centerX, this.centerY, circleRadius);
+    this.drawCircle(endPoint.x, endPoint.y, circleRadius);
+
     this.animate();
+  }
+
+  drawCircle(x, y, radius) {
+    this.context.beginPath();
+    this.context.arc(x, y, radius, 0, Math.PI * 2);
+    this.context.fillStyle = this.color;
+    this.context.fill();
+
+    this.context.beginPath();
+    this.context.arc(x, y, radius * 0.7, 0, Math.PI * 2);
+    this.context.fillStyle = this.color;
+    this.context.globalAlpha = 0.5;
+    this.context.fill();
+    this.context.globalAlpha = 1;
   }
 
   animate() {
