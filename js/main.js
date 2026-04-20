@@ -13,7 +13,7 @@ function createTentacles(count) {
   const tentaclesArray = [];
 
   for (let i = 0; i < count; i++) {
-    const maxRadius = 50;
+    const maxRadius = 40;
     const minRadius = 20;
     let startRadius = randomRange(-maxRadius, maxRadius);
     if (Math.abs(startRadius) < minRadius) {
@@ -31,7 +31,7 @@ function createTentacles(count) {
     const multiplierSpeed = randomRange(0.5, 1.5);
     const width = randomRange(25, 50);
     const dividedWidth = randomRange(1.05, 1.09);
-    const segmentCount = Math.floor(randomRange(80, 100));
+    const segmentCount = Math.floor(randomRange(40, 80));
     const overlap = randomRange(1.05, 1.1);
     const startColor = getRandomColor();
     const targetColor = getRandomColor();

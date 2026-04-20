@@ -14,9 +14,9 @@ export class Tentacle {
     count,
     dividedRadius,
     multiplierSpeed,
-    overlap = 0.85,
-    targetColor = null,
-    colorChangeDuration = 5000,
+    overlap,
+    targetColor,
+    colorChangeDuration,
   ) {
     this.centerX = centerX;
     this.centerY = centerY;
@@ -53,22 +53,20 @@ export class Tentacle {
   }
 
   getCurrentColor() {
-    if (this.targetColor === this.originalColor) {
-      return this.color;
-    }
-
     const now = performance.now();
     const elapsed = now - this.colorChangeStartTime;
-    let progress = Math.min(1, elapsed / this.colorChangeDuration);
 
-    if (progress >= 1) {
+    if (elapsed >= this.colorChangeDuration) {
       const newTargetColor = getRandomColor();
       this.originalColor = this.targetColor;
       this.targetColor = newTargetColor;
       this.colorChangeStartTime = now;
-      progress = 0;
+      this.color = this.originalColor;
+
+      return this.originalColor;
     }
 
+    const progress = elapsed / this.colorChangeDuration;
     return interpolateColor(this.originalColor, this.targetColor, progress);
   }
 
